@@ -138,7 +138,7 @@ object StockRepository {
                 val change = if (prevClose > 0.0) ((price - prevClose) / prevClose) * 100.0 else 0.0
 
                 // Strict filter: price between ₹5 and ₹500
-                if (price in 5.0..500.0) {
+                if (price in 1.0..500.0) {
                     val newsHeadline = fetchNews(symbol)
                     Stock(
                         symbol = symbol,
