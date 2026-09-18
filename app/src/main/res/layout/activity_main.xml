@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:background="#1E293B"
-            android:text="BSE/NSE (₹5 - ₹500) Momentum Radar"
+            android:text="BSE/NSE (₹1 - ₹500) Momentum Radar"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
