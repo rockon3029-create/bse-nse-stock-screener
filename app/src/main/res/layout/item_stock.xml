@@ -15,6 +15,7 @@
         android:orientation="vertical"
         android:padding="14dp">
 
+        <!-- Top Row: Symbol, Price, & Daily Change -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,30 +71,76 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvSector"
-            android:layout_width="wrap_content"
+        <!-- Middle Row: Sector & 30D Return -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#E2E8F0"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="3dp"
-            android:text="Renewable Energy"
-            android:textColor="#334155"
-            android:textSize="11sp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
 
+            <TextView
+                android:id="@+id/tvSector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#E2E8F0"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Renewable Energy"
+                android:textColor="#334155"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv30DayReturn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="30D: +14.5%"
+                android:textColor="#475569"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 30-Day Predictive Trend Indicator Box -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#F8FAFC"
+            android:background="#F1F5F9"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvExpectationBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXPECTED TO RISE ▲"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvExpectationReason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Trading above 30D avg with steady accumulation."
+                android:textColor="#334155"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- News Catalyst Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#EFF6FF"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MARKET ATTRACTION / CATALYST"
+                android:text="MARKET CATALYST / NEWS"
                 android:textColor="#2563EB"
                 android:textSize="10sp"
                 android:textStyle="bold" />
@@ -103,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Fresh multi-megawatt order win driven by volume expansion"
+                android:text="Heavy volume breakout observed."
                 android:textColor="#1E293B"
                 android:textSize="12sp" />
         </LinearLayout>
