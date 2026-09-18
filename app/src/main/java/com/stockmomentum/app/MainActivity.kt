@@ -25,6 +25,7 @@ enum class SortType {
     TOP_LOSERS,
     PRICE_LOW_HIGH,
     PRICE_HIGH_LOW,
+    MONTHLY_GAINERS,
     NAME_A_Z
 }
 
@@ -108,19 +109,21 @@ class MainActivity : AppCompatActivity() {
         list = when (currentSort) {
             SortType.TOP_GAINERS -> list.sortedByDescending { it.changePercent }
             SortType.TOP_LOSERS -> list.sortedBy { it.changePercent }
+            SortType.MONTHLY_GAINERS -> list.sortedByDescending { it.monthlyReturn }
             SortType.PRICE_LOW_HIGH -> list.sortedBy { it.price }
             SortType.PRICE_HIGH_LOW -> list.sortedByDescending { it.price }
             SortType.NAME_A_Z -> list.sortedBy { it.symbol }
         }
 
-        tvCount.text = "${list.size} Shares Available"
+        tvCount.text = "${list.size} Shares Screened"
         adapter.submitList(list)
     }
 
     private fun showSortDialog() {
         val options = arrayOf(
-            "Top Gainers (% Change ⬇)",
-            "Top Losers (% Change ⬆)",
+            "Today's Top Gainers (% Change ⬇)",
+            "Today's Top Losers (% Change ⬆)",
+            "30-Day Momentum (Highest 30D Return)",
             "Price: Low to High (₹ ⬆)",
             "Price: High to Low (₹ ⬇)",
             "Alphabetical (A - Z)"
@@ -129,9 +132,10 @@ class MainActivity : AppCompatActivity() {
         val selectedIndex = when (currentSort) {
             SortType.TOP_GAINERS -> 0
             SortType.TOP_LOSERS -> 1
-            SortType.PRICE_LOW_HIGH -> 2
-            SortType.PRICE_HIGH_LOW -> 3
-            SortType.NAME_A_Z -> 4
+            SortType.MONTHLY_GAINERS -> 2
+            SortType.PRICE_LOW_HIGH -> 3
+            SortType.PRICE_HIGH_LOW -> 4
+            SortType.NAME_A_Z -> 5
         }
 
         AlertDialog.Builder(this)
@@ -140,8 +144,9 @@ class MainActivity : AppCompatActivity() {
                 currentSort = when (which) {
                     0 -> SortType.TOP_GAINERS
                     1 -> SortType.TOP_LOSERS
-                    2 -> SortType.PRICE_LOW_HIGH
-                    3 -> SortType.PRICE_HIGH_LOW
+                    2 -> SortType.MONTHLY_GAINERS
+                    3 -> SortType.PRICE_LOW_HIGH
+                    4 -> SortType.PRICE_HIGH_LOW
                     else -> SortType.NAME_A_Z
                 }
                 filterAndRender()
@@ -178,17 +183,35 @@ class StockAdapter : RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
         private val tvPrice: TextView = view.findViewById(R.id.tvPrice)
         private val tvChange: TextView = view.findViewById(R.id.tvChange)
         private val tvSector: TextView = view.findViewById(R.id.tvSector)
+        private val tv30DayReturn: TextView = view.findViewById(R.id.tv30DayReturn)
+        private val tvExpectationBadge: TextView = view.findViewById(R.id.tvExpectationBadge)
+        private val tvExpectationReason: TextView = view.findViewById(R.id.tvExpectationReason)
         private val tvNews: TextView = view.findViewById(R.id.tvNews)
 
         fun bind(stock: Stock) {
             tvSymbol.text = stock.symbol
             tvName.text = stock.name
             tvPrice.text = "₹${stock.price}"
+
+            // Daily return
             val isUp = stock.changePercent >= 0
             tvChange.text = "${if (isUp) "+" else ""}${stock.changePercent}%"
             tvChange.setTextColor(if (isUp) Color.parseColor("#16A34A") else Color.parseColor("#DC2626"))
+
             tvSector.text = stock.sector
-            tvNews.text = stock.catalystNews ?: "Active volume momentum"
+
+            // 30-Day return
+            val isMonthUp = stock.monthlyReturn >= 0
+            tv30DayReturn.text = "30D: ${if (isMonthUp) "+" else ""}${stock.monthlyReturn}%"
+            tv30DayReturn.setTextColor(if (isMonthUp) Color.parseColor("#16A34A") else Color.parseColor("#DC2626"))
+
+            // Expectation Badge & Reason
+            tvExpectationBadge.text = stock.expectation.label
+            tvExpectationBadge.setTextColor(Color.parseColor(stock.expectation.colorHex))
+            tvExpectationReason.text = stock.expectationReason
+
+            // News
+            tvNews.text = stock.catalystNews ?: "Active volume momentum recorded"
         }
     }
 }
