@@ -28,23 +28,31 @@ data class ConfiguredStock(
 
 object StockRepository {
     private val client = OkHttpClient.Builder()
-        .connectTimeout(10, TimeUnit.SECONDS)
-        .readTimeout(10, TimeUnit.SECONDS)
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(15, TimeUnit.SECONDS)
         .build()
 
-    // Public URL pointing directly to your GitHub repository's stocks.json file
-    private const val GITHUB_CONFIG_URL = 
-        "https://raw.githubusercontent.com/rockon3029-creat/bse-nse-stock-screener/main/stocks.json"
+    // Corrected raw URL with proper username
+    private const val GITHUB_CONFIG_URL =
+        "https://raw.githubusercontent.com/rockon3029-create/bse-nse-stock-screener/main/stocks.json"
 
     suspend fun fetchFilteredStocks(): List<Stock> = withContext(Dispatchers.IO) {
         val (minPrice, maxPrice, universe) = loadStockUniverse()
 
-        val tasks = universe.map { stock ->
-            async {
-                fetchSingleStock(stock.symbol, stock.sector, stock.name, minPrice, maxPrice)
+        // Fetch in batches of 15 to avoid mobile network timeouts / rate limits
+        val results = mutableListOf<Stock>()
+        val chunks = universe.chunked(15)
+
+        for (chunk in chunks) {
+            val batchTasks = chunk.map { stock ->
+                async {
+                    fetchSingleStock(stock.symbol, stock.sector, stock.name, minPrice, maxPrice)
+                }
             }
+            results.addAll(batchTasks.awaitAll().filterNotNull())
         }
-        tasks.awaitAll().filterNotNull().sortedByDescending { it.changePercent }
+
+        results.sortedByDescending { it.changePercent }
     }
 
     private fun loadStockUniverse(): Triple<Double, Double, List<ConfiguredStock>> {
@@ -53,33 +61,40 @@ object StockRepository {
         val stocks = mutableListOf<ConfiguredStock>()
 
         try {
-            val request = Request.Builder().url(GITHUB_CONFIG_URL).build()
-            client.newCall(request).execute().use { response ->
-                if (response.isSuccessful) {
-                    val rawJson = response.body?.string() ?: ""
-                    val root = JSONObject(rawJson)
-                    minPrice = root.optDouble("minPrice", 1.0)
-                    maxPrice = root.optDouble("maxPrice", 500.0)
+            val request = Request.Builder()
+                .url(GITHUB_CONFIG_URL)
+                .header("Cache-Control", "no-cache")
+                .build()
 
-                    val arr = root.getJSONArray("stocks")
-                    for (i in 0 until arr.length()) {
-                        val item = arr.getJSONObject(i)
-                        stocks.add(
-                            ConfiguredStock(
-                                symbol = item.getString("symbol"),
-                                sector = item.getString("sector"),
-                                name = item.getString("name")
-                            )
+            val response = client.newCall(request).execute()
+            if (response.isSuccessful) {
+                val rawJson = response.body?.string() ?: ""
+                val root = JSONObject(rawJson)
+                minPrice = root.optDouble("minPrice", 1.0)
+                maxPrice = root.optDouble("maxPrice", 500.0)
+
+                val arr = root.getJSONArray("stocks")
+                for (i in 0 until arr.length()) {
+                    val item = arr.getJSONObject(i)
+                    stocks.add(
+                        ConfiguredStock(
+                            symbol = item.getString("symbol"),
+                            sector = item.getString("sector"),
+                            name = item.getString("name")
                         )
-                    }
+                    )
                 }
             }
-        } catch (_: Exception) {
-            // Safe fallback list if GitHub raw is temporarily unavailable
+        } catch (_: Exception) {}
+
+        // Fallback default list if network is down on startup
+        if (stocks.isEmpty()) {
             stocks.add(ConfiguredStock("SUZLON", "Renewable Energy", "Suzlon Energy"))
             stocks.add(ConfiguredStock("YESBANK", "Banking", "Yes Bank"))
             stocks.add(ConfiguredStock("IRFC", "Financial Services", "Indian Railway Finance"))
             stocks.add(ConfiguredStock("ZOMATO", "Consumer Tech", "Zomato Ltd"))
+            stocks.add(ConfiguredStock("TATAPOWER", "Power & Utilities", "Tata Power"))
+            stocks.add(ConfiguredStock("BHEL", "Capital Goods", "BHEL"))
         }
 
         return Triple(minPrice, maxPrice, stocks)
