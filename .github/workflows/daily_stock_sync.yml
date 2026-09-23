@@ -1,0 +1,32 @@
+name: Daily Stock Screener Sync
+
+on:
+  schedule:
+    # Runs Monday to Friday at 13:00 UTC (6:30 PM IST, after market close)
+    - cron: '0 13 * * 1-5'
+  workflow_dispatch: # Allows manual trigger anytime from the Actions tab
+
+jobs:
+  update-stocks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Screener Engine
+        run: python scripts/update_stocks.py
+
+      - name: Commit and Push Updated stocks.json
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add stocks.json
+          git diff-index --quiet HEAD || (git commit -m "chore(data): auto-update stocks based on previous day performance [skip ci]" && git push)
