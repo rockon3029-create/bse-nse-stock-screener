@@ -3,21 +3,6 @@
   "maxPrice": 500.0,
   "stocks": [
     {
-      "symbol": "TEXRAIL",
-      "sector": "Railways & Infra",
-      "name": "Texmaco Rail"
-    },
-    {
-      "symbol": "BANDHANBNK",
-      "sector": "Banking",
-      "name": "Bandhan Bank"
-    },
-    {
-      "symbol": "ALOKINDS",
-      "sector": "Textiles",
-      "name": "Alok Industries"
-    },
-    {
       "symbol": "SAIL",
       "sector": "Metals & Mining",
       "name": "SAIL"
@@ -48,13 +33,8 @@
       "name": "Bank of Maharashtra"
     },
     {
-      "symbol": "CENTRALBK",
-      "sector": "Banking",
-      "name": "Central Bank of India"
-    },
-    {
       "symbol": "BIOCON",
-      "sector": "Pharma & Healthcare",
+      "sector": "Pharma",
       "name": "Biocon Ltd"
     },
     {
@@ -149,18 +129,13 @@
     },
     {
       "symbol": "MOREPENLAB",
-      "sector": "Pharma & Healthcare",
+      "sector": "Pharma",
       "name": "Morepen Lab"
     },
     {
       "symbol": "TRIDENT",
       "sector": "Textiles",
       "name": "Trident Ltd"
-    },
-    {
-      "symbol": "J&KBANK",
-      "sector": "Banking",
-      "name": "J&K Bank"
     },
     {
       "symbol": "UNIONBANK",
@@ -178,18 +153,13 @@
       "name": "Yes Bank"
     },
     {
-      "symbol": "NCC",
-      "sector": "Construction",
-      "name": "NCC Ltd"
-    },
-    {
       "symbol": "PFC",
       "sector": "Financial Services",
       "name": "Power Finance Corp"
     },
     {
       "symbol": "BEL",
-      "sector": "Defense & Electronics",
+      "sector": "Defense",
       "name": "Bharat Electronics"
     },
     {
@@ -214,7 +184,7 @@
     },
     {
       "symbol": "ZEEL",
-      "sector": "Media & Entertainment",
+      "sector": "Media",
       "name": "Zee Entertainment"
     },
     {
