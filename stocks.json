@@ -13,24 +13,9 @@
       "name": "SAIL"
     },
     {
-      "symbol": "NATIONALUM",
-      "sector": "Metals & Mining",
-      "name": "National Aluminium"
-    },
-    {
-      "symbol": "NMDC",
-      "sector": "Metals & Mining",
-      "name": "NMDC Ltd"
-    },
-    {
-      "symbol": "CANBK",
+      "symbol": "MAHABANK",
       "sector": "Banking",
-      "name": "Canara Bank"
-    },
-    {
-      "symbol": "UNIONBANK",
-      "sector": "Banking",
-      "name": "Union Bank of India"
+      "name": "Bank of Maharashtra"
     },
     {
       "symbol": "IDEA",
@@ -43,54 +28,19 @@
       "name": "Tata Steel"
     },
     {
-      "symbol": "NYKAA",
-      "sector": "Consumer Tech",
-      "name": "Nykaa"
-    },
-    {
-      "symbol": "BIOCON",
-      "sector": "Pharma",
-      "name": "Biocon Ltd"
-    },
-    {
-      "symbol": "UCOBANK",
-      "sector": "Banking",
-      "name": "UCO Bank"
-    },
-    {
       "symbol": "VEDL",
       "sector": "Metals & Mining",
       "name": "Vedanta Ltd"
     },
     {
-      "symbol": "NBCC",
-      "sector": "Construction",
-      "name": "NBCC India"
+      "symbol": "IREDA",
+      "sector": "Renewable Energy",
+      "name": "IREDA"
     },
     {
-      "symbol": "PNB",
-      "sector": "Banking",
-      "name": "Punjab National Bank"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "sector": "Banking",
-      "name": "Bank of Baroda"
-    },
-    {
-      "symbol": "TRIDENT",
-      "sector": "Textiles",
-      "name": "Trident Ltd"
-    },
-    {
-      "symbol": "BEL",
-      "sector": "Defense",
-      "name": "Bharat Electronics"
-    },
-    {
-      "symbol": "HUDCO",
-      "sector": "Financial Services",
-      "name": "HUDCO"
+      "symbol": "NATIONALUM",
+      "sector": "Metals & Mining",
+      "name": "National Aluminium"
     },
     {
       "symbol": "IDBI",
@@ -98,19 +48,39 @@
       "name": "IDBI Bank"
     },
     {
-      "symbol": "ZEEL",
-      "sector": "Media",
-      "name": "Zee Entertainment"
-    },
-    {
       "symbol": "RENUKA",
       "sector": "Agri & Sugar",
       "name": "Shree Renuka Sugars"
     },
     {
-      "symbol": "IOB",
+      "symbol": "UCOBANK",
       "sector": "Banking",
-      "name": "Indian Overseas Bank"
+      "name": "UCO Bank"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "sector": "Banking",
+      "name": "Union Bank of India"
+    },
+    {
+      "symbol": "CANBK",
+      "sector": "Banking",
+      "name": "Canara Bank"
+    },
+    {
+      "symbol": "BANKBARODA",
+      "sector": "Banking",
+      "name": "Bank of Baroda"
+    },
+    {
+      "symbol": "HUDCO",
+      "sector": "Financial Services",
+      "name": "HUDCO"
+    },
+    {
+      "symbol": "TRIDENT",
+      "sector": "Textiles",
+      "name": "Trident Ltd"
     },
     {
       "symbol": "NHPC",
@@ -118,19 +88,14 @@
       "name": "NHPC Ltd"
     },
     {
-      "symbol": "PFC",
-      "sector": "Financial Services",
-      "name": "Power Finance Corp"
+      "symbol": "NMDC",
+      "sector": "Metals & Mining",
+      "name": "NMDC Ltd"
     },
     {
-      "symbol": "FEDERALBNK",
-      "sector": "Banking",
-      "name": "Federal Bank"
-    },
-    {
-      "symbol": "YESBANK",
-      "sector": "Banking",
-      "name": "Yes Bank"
+      "symbol": "TATAPOWER",
+      "sector": "Power & Utilities",
+      "name": "Tata Power"
     },
     {
       "symbol": "RAILTEL",
@@ -138,9 +103,9 @@
       "name": "RailTel Corp"
     },
     {
-      "symbol": "MAHABANK",
+      "symbol": "IOB",
       "sector": "Banking",
-      "name": "Bank of Maharashtra"
+      "name": "Indian Overseas Bank"
     },
     {
       "symbol": "IRFC",
@@ -148,19 +113,59 @@
       "name": "Indian Railway Finance"
     },
     {
+      "symbol": "NBCC",
+      "sector": "Construction",
+      "name": "NBCC India"
+    },
+    {
+      "symbol": "NYKAA",
+      "sector": "Consumer Tech",
+      "name": "Nykaa"
+    },
+    {
+      "symbol": "ZEEL",
+      "sector": "Media",
+      "name": "Zee Entertainment"
+    },
+    {
+      "symbol": "PNB",
+      "sector": "Banking",
+      "name": "Punjab National Bank"
+    },
+    {
+      "symbol": "BEL",
+      "sector": "Defense",
+      "name": "Bharat Electronics"
+    },
+    {
+      "symbol": "RVNL",
+      "sector": "Railways & Infra",
+      "name": "Rail Vikas Nigam"
+    },
+    {
       "symbol": "HFCL",
       "sector": "Telecom & Infra",
       "name": "HFCL Ltd"
     },
     {
-      "symbol": "IDFCFIRSTB",
-      "sector": "Banking",
-      "name": "IDFC First Bank"
+      "symbol": "MOREPENLAB",
+      "sector": "Pharma",
+      "name": "Morepen Lab"
     },
     {
       "symbol": "RITES",
       "sector": "Railways & Infra",
       "name": "RITES Ltd"
+    },
+    {
+      "symbol": "PFC",
+      "sector": "Financial Services",
+      "name": "Power Finance Corp"
+    },
+    {
+      "symbol": "IDFCFIRSTB",
+      "sector": "Banking",
+      "name": "IDFC First Bank"
     },
     {
       "symbol": "SJVN",
@@ -173,34 +178,29 @@
       "name": "Ircon International"
     },
     {
-      "symbol": "TATAPOWER",
-      "sector": "Power & Utilities",
-      "name": "Tata Power"
+      "symbol": "YESBANK",
+      "sector": "Banking",
+      "name": "Yes Bank"
     },
     {
-      "symbol": "MOREPENLAB",
+      "symbol": "FEDERALBNK",
+      "sector": "Banking",
+      "name": "Federal Bank"
+    },
+    {
+      "symbol": "BIOCON",
       "sector": "Pharma",
-      "name": "Morepen Lab"
-    },
-    {
-      "symbol": "IREDA",
-      "sector": "Renewable Energy",
-      "name": "IREDA"
-    },
-    {
-      "symbol": "RVNL",
-      "sector": "Railways & Infra",
-      "name": "Rail Vikas Nigam"
-    },
-    {
-      "symbol": "SUZLON",
-      "sector": "Renewable Energy",
-      "name": "Suzlon Energy"
+      "name": "Biocon Ltd"
     },
     {
       "symbol": "BHEL",
       "sector": "Capital Goods",
       "name": "BHEL"
+    },
+    {
+      "symbol": "SUZLON",
+      "sector": "Renewable Energy",
+      "name": "Suzlon Energy"
     }
   ]
 }
